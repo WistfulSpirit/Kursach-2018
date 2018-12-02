@@ -1,0 +1,60 @@
+﻿<Window x:Class="LastBoundary.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:local="clr-namespace:LastBoundary"
+        Title="SettingsWindow" Height="300" Width="300">
+    <Window.Resources>
+        <Style TargetType="Slider">
+            <Setter Property="Height" Value="100"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value ="10"/>
+            <Setter Property="Orientation"  Value="Vertical"/>
+            <Setter Property="Height" Value="100"/>
+            <Setter Property="Minimum" Value="0"/>
+            <Setter Property="Maximum" Value="100"/>
+        </Style>
+        
+    </Window.Resources>
+    <Grid>
+        <TabControl  Width="Auto">
+            <TabItem Header="Каналы">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="3*"/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Content="Список каналов" Margin="5" Padding="0" VerticalAlignment="Center"/>
+                        <ListBox x:Name="lbChannels"  Grid.Row="1" Height="auto" Margin="5"/>
+                    </Grid>
+                    <Button x:Name="btnStartSearch" Grid.Row="1" HorizontalAlignment="Left" Margin="5" Content="Начать новый поиск" Click="btnStartSearch_Click"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Изображение">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0">
+                        <Label Content="Яркость" HorizontalAlignment="Center"/>
+                        <Slider x:Name ="slBrightness" ValueChanged="slBrightness_ValueChanged"/>
+                        <local:NumericUpDown x:Name="NUDBrightness" Margin="5"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1">
+                        <Label Content="Контраст" HorizontalAlignment="Center"/>
+                        <Slider x:Name ="slContrast" ValueChanged="slContrast_ValueChanged"/>
+                        <local:NumericUpDown x:Name="NUDContrast" Margin="5"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

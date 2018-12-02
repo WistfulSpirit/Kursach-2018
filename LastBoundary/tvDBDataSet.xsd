@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="tvDBDataSet" targetNamespace="http://tempuri.org/tvDBDataSet.xsd" xmlns:mstns="http://tempuri.org/tvDBDataSet.xsd" xmlns="http://tempuri.org/tvDBDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="tvDBConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="tvDBConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.LastBoundary.Properties.Settings.GlobalReference.Default.tvDBConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="tvDBDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="tvDBDataSet" msprop:Generator_UserDSName="tvDBDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Channels" msprop:Generator_TableClassName="ChannelsDataTable" msprop:Generator_TableVarName="tableChannels" msprop:Generator_RowChangedName="ChannelsRowChanged" msprop:Generator_TablePropName="Channels" msprop:Generator_RowDeletingName="ChannelsRowDeleting" msprop:Generator_RowChangingName="ChannelsRowChanging" msprop:Generator_RowEvHandlerName="ChannelsRowChangeEventHandler" msprop:Generator_RowDeletedName="ChannelsRowDeleted" msprop:Generator_RowClassName="ChannelsRow" msprop:Generator_UserTableName="Channels" msprop:Generator_RowEvArgName="ChannelsRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="num" msprop:Generator_ColumnVarNameInTable="columnnum" msprop:Generator_ColumnPropNameInRow="num" msprop:Generator_ColumnPropNameInTable="numColumn" msprop:Generator_UserColumnName="num" type="xs:int" />
+              <xs:element name="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_UserColumnName="name">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="link" msprop:Generator_ColumnVarNameInTable="columnlink" msprop:Generator_ColumnPropNameInRow="link" msprop:Generator_ColumnPropNameInTable="linkColumn" msprop:Generator_UserColumnName="link" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Logs" msprop:Generator_TableClassName="LogsDataTable" msprop:Generator_TableVarName="tableLogs" msprop:Generator_TablePropName="Logs" msprop:Generator_RowDeletingName="LogsRowDeleting" msprop:Generator_RowChangingName="LogsRowChanging" msprop:Generator_RowEvHandlerName="LogsRowChangeEventHandler" msprop:Generator_RowDeletedName="LogsRowDeleted" msprop:Generator_UserTableName="Logs" msprop:Generator_RowChangedName="LogsRowChanged" msprop:Generator_RowEvArgName="LogsRowChangeEvent" msprop:Generator_RowClassName="LogsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:string" minOccurs="0" />
+              <xs:element name="actionId" msprop:Generator_ColumnVarNameInTable="columnactionId" msprop:Generator_ColumnPropNameInRow="actionId" msprop:Generator_ColumnPropNameInTable="actionIdColumn" msprop:Generator_UserColumnName="actionId" type="xs:string" minOccurs="0" />
+              <xs:element name="description" msprop:Generator_ColumnVarNameInTable="columndescription" msprop:Generator_ColumnPropNameInRow="description" msprop:Generator_ColumnPropNameInTable="descriptionColumn" msprop:Generator_UserColumnName="description" type="xs:string" minOccurs="0" />
+              <xs:element name="time" msprop:Generator_ColumnVarNameInTable="columntime" msprop:Generator_ColumnPropNameInRow="time" msprop:Generator_ColumnPropNameInTable="timeColumn" msprop:Generator_UserColumnName="time" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Actions" msprop:Generator_TableClassName="ActionsDataTable" msprop:Generator_TableVarName="tableActions" msprop:Generator_TablePropName="Actions" msprop:Generator_RowDeletingName="ActionsRowDeleting" msprop:Generator_RowChangingName="ActionsRowChanging" msprop:Generator_RowEvHandlerName="ActionsRowChangeEventHandler" msprop:Generator_RowDeletedName="ActionsRowDeleted" msprop:Generator_UserTableName="Actions" msprop:Generator_RowChangedName="ActionsRowChanged" msprop:Generator_RowEvArgName="ActionsRowChangeEvent" msprop:Generator_RowClassName="ActionsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:string" minOccurs="0" />
+              <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Channels" />
+      <xs:field xpath="mstns:num" />
+    </xs:unique>
+    <xs:unique name="LogsKey1">
+      <xs:selector xpath=".//mstns:Logs" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="ActionsKey1">
+      <xs:selector xpath=".//mstns:Actions" />
+      <xs:field xpath="mstns:id" />
+    </xs:unique>
+  </xs:element>
+  <xs:annotation>
+    <xs:appinfo>
+      <msdata:Relationship name="Actions_Logs" msdata:parent="Actions" msdata:child="Logs" msdata:parentkey="id" msdata:childkey="actionId" msprop:Generator_UserChildTable="Logs" msprop:Generator_ChildPropName="GetLogsRows" msprop:Generator_UserRelationName="Actions_Logs" msprop:Generator_RelationVarName="relationActions_Logs" msprop:Generator_UserParentTable="Actions" msprop:Generator_ParentPropName="ActionsRow" />
+    </xs:appinfo>
+  </xs:annotation>
+</xs:schema>

@@ -1,0 +1,4 @@
+Россия 24 * http://ott-cdn.ucom.am/s21/index.m3u8
+Discovery * http://37.145.189.43:34040/udp/233.33.210.27:5050
+Пятница * http://ott-cdn.ucom.am/s50/index.m3u8
+РЕН-ТВ * http://ott-cdn.ucom.am/s85/index.m3u8

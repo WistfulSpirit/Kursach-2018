@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="LastBoundary.NumericUpDown"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="30" d:DesignWidth="100">
+    <Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBox x:Name ="tbX" Grid.Column="0" Text="50" Grid.RowSpan="2" VerticalContentAlignment="Center" TextAlignment="Right" FontSize="20" TextChanged="tbX_TextChanged"/>
+            <RepeatButton Grid.Column="1" Grid.Row="0" x:Name="btnUp" Click="btnUp_Click" Content="▲" FontSize="7"/>
+            <RepeatButton Grid.Column="1" Grid.Row="1" x:Name="btnDown" Click="btnDown_Click" Content="▼" FontSize="7"/>
+        </Grid>
+    </Grid>
+</UserControl>

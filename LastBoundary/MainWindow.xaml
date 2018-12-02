@@ -1,0 +1,212 @@
+﻿<Window x:Class="LastBoundary.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vlc="clr-namespace:Vlc.DotNet.Wpf;assembly=Vlc.DotNet.Wpf"
+        Title="MainWindow" Height="700" Width="1080"
+        Closing="Window_Closing">
+
+    <Window.Resources>
+        <Style x:Key="RoundCorner" TargetType="{x:Type Button}">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid x:Name="grid">
+                            <Border x:Name="border" CornerRadius="8" BorderBrush="Black" BorderThickness="2">
+                                <Border.Background>
+                                    <RadialGradientBrush GradientOrigin="0.496,1.052">
+                                        <RadialGradientBrush.RelativeTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform CenterX="0.5" CenterY="0.5" 
+                                                        ScaleX="1.5" ScaleY="1.5"/>
+                                                <TranslateTransform X="0.02" Y="0.3"/>
+                                            </TransformGroup>
+                                        </RadialGradientBrush.RelativeTransform>
+                                        <GradientStop Offset="1" Color="#00000000"/>
+                                        <GradientStop Offset="0.3" Color="#FFFFFFFF"/>
+                                    </RadialGradientBrush>
+                                </Border.Background>
+                                <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          TextElement.FontWeight="Bold">
+                                </ContentPresenter>
+                            </Border>
+
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" TargetName="border">
+                                    <Setter.Value>
+                                        <RadialGradientBrush GradientOrigin="0.496,1.052">
+                                            <RadialGradientBrush.RelativeTransform>
+                                                <TransformGroup>
+                                                    <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.5" ScaleY="1.5"/>
+                                                    <TranslateTransform X="0.02" Y="0.3"/>
+                                                </TransformGroup>
+                                            </RadialGradientBrush.RelativeTransform>
+                                            <GradientStop Color="#00000000" Offset="1"/>
+                                            <GradientStop Color="#FF303030" Offset="0.3"/>
+                                        </RadialGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" TargetName="border" Value="#FF33962B"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" TargetName="grid" Value="0.25"/>
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="170"/>
+        </Grid.ColumnDefinitions>
+        <Rectangle Grid.Column="0" Grid.Row="0" Fill="Transparent" Stroke="Black" StrokeThickness="1"/>
+
+
+        <Grid Grid.Column="0" Grid.Row="0">
+            <Grid.Background>
+                <VisualBrush Viewbox="0.20,0.20,0.6,0.6">
+                    <VisualBrush.Visual>
+                        <Image x:Name="BackgroundVideo" Stretch="UniformToFill">
+                            <Image.Effect>
+                                <BlurEffect Radius="20"/>
+                            </Image.Effect>
+                        </Image>
+                    </VisualBrush.Visual>
+                </VisualBrush>
+            </Grid.Background>
+            <Image x:Name="Video" Stretch="Uniform"/>
+            <Label x:Name="lblToChannel" Content="1488" Margin="40" Panel.ZIndex="10" Visibility="Hidden" 
+                     Background="Transparent" Foreground="SpringGreen" FontSize="45" FontWeight="Bold" FontFamily="Agency FB"/>
+        </Grid>
+        <!--
+        <vlc:VlcControl Grid.Column="0" Grid.Row="0" x:Name="vlcPlayer"/>
+        <MediaElement x:Name="TV" Grid.Column="0" Grid.Row="0" PreviewMouseLeftButtonDown="TV_PreviewMouseLeftButtonDown"/>-->
+
+
+        <Rectangle Grid.Column="1" Grid.Row="0" Fill="Transparent" Stroke="Black" StrokeThickness="1"/>
+        <Grid Grid.Column="1" Grid.Row="0">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.5*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="btnOn" Grid.Column="1" Style="{DynamicResource RoundCorner}" Width="40" Height="40" Grid.Row="2" Click="btnOn_Click">
+                <Image Source="/img/onoff.png" Margin="3"/>
+            </Button>
+            <Rectangle Fill="AntiqueWhite" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Margin="1" />
+            <Image x:Name="btnImgSettings" Grid.Column="2" Grid.Row="0" Width="20" Source="/img/settings.png" HorizontalAlignment="Right" Margin="3" PreviewMouseLeftButtonDown="btnImgSettings_PreviewMouseLeftButtonDown">
+                <Image.Style>
+                    <Style TargetType="{x:Type Image}">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect ShadowDepth="2" Color="#FF555555" Opacity="0.2" BlurRadius="5"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>
+            <Button Grid.Row="3" Grid.Column="0" Style="{DynamicResource RoundCorner}" Width="35"  Content="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="ExtraBold" Click="NumBtn_Click"/>
+            <Button Grid.Row="3" Grid.Column="1" Style="{DynamicResource RoundCorner}" Width="35"  Content="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="ExtraBold" Click="NumBtn_Click"/>
+            <Button Grid.Row="3" Grid.Column="2" Style="{DynamicResource RoundCorner}" Width="35"  Content="3" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="ExtraBold" Click="NumBtn_Click"/>
+            <Button Grid.Row="4" Grid.Column="0" Style="{DynamicResource RoundCorner}" Width="35"  Content="4" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="ExtraBold" Click="NumBtn_Click"/>
+            <Button Grid.Row="4" Grid.Column="1" Style="{DynamicResource RoundCorner}" Width="35"  Content="5" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="ExtraBold" Click="NumBtn_Click"/>
+            <Button Grid.Row="4" Grid.Column="2" Style="{DynamicResource RoundCorner}" Width="35"  Content="6" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="ExtraBold" Click="NumBtn_Click"/>
+            <Button Grid.Row="5" Grid.Column="0" Style="{DynamicResource RoundCorner}" Width="35"  Content="7" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="ExtraBold" Click="NumBtn_Click"/>
+            <Button Grid.Row="5" Grid.Column="1" Style="{DynamicResource RoundCorner}" Width="35"  Content="8" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="ExtraBold" Click="NumBtn_Click"/>
+            <Button Grid.Row="5" Grid.Column="2" Style="{DynamicResource RoundCorner}" Width="35"  Content="9" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="ExtraBold" Click="NumBtn_Click"/>
+            <Button Grid.Row="6" Grid.Column="1" Style="{DynamicResource RoundCorner}" Width="35"  Content="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="ExtraBold" Click="NumBtn_Click"/>
+
+
+            <Button x:Name="btnVolumeUp" Grid.Row="7" Grid.Column="0" Style="{DynamicResource RoundCorner}" Width="35" Height="28" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="ExtraBlack" FontSize="30" Click="btnVolumeUp_Click">
+                <Image Source="/img/plus.png" Width ="17"/>
+            </Button>
+
+
+            <Button Grid.Row="7" Grid.Column="1" Style="{DynamicResource RoundCorner}" Width="35" Height="28" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="ExtraBold" Grid.RowSpan="2" PreviewMouseLeftButtonDown="imgSoundToolBar_PreviewMouseLeftButtonDown">
+                <Image Source="/img/mute.png" Width ="17"/>
+            </Button>
+
+
+            <Button x:Name="btnChannelUp" Grid.Row="7" Grid.Column="2" Style="{DynamicResource RoundCorner}" Width="35" Height="28" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="ExtraBold" Click="btnChannelUp_Click">
+                <Image Source="/img/chup.png" Width ="25"/>
+            </Button>
+
+            <Image Grid.Row="8" Grid.Column="0" Source="/img/sound.png" Width="30"/>
+            <Button x:Name="btnVolumeDown" Grid.Row="9" Grid.Column="0" Style="{DynamicResource RoundCorner}" Width="35" Height="28" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="ExtraBold" Click="btnVolumeDown_Click">
+                <Image Source="img/minus.png" Width ="20"/>
+            </Button>
+            <Button x:Name="btnSwitch" Grid.Row="8" Grid.Column="1" Style="{DynamicResource RoundCorner}" Width="35" Height="28" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="ExtraBold" Grid.RowSpan="2" Click="btnSwitch_Click">
+                <Image Source="img/switch.png" Width ="20"/>
+            </Button>
+
+            <Button x:Name="btnChannelDown" Grid.Row="9" Grid.Column="2" Style="{DynamicResource RoundCorner}" Width="35" Height="28" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="ExtraBold" Click="btnChannelDown_Click">
+                <Image Source="/img/chdown.png" Width ="25" Margin="0,1,0,0"/>
+            </Button>
+
+        </Grid>
+        <Grid Grid.Column="0" Grid.Row="1" Panel.ZIndex="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="1.5*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Image x:Name="imgSoundToolBar" Source="/img/sound.png" Width="40" Grid.Column="0" PreviewMouseLeftButtonDown="imgSoundToolBar_PreviewMouseLeftButtonDown">
+                <Image.Style>
+                    <Style TargetType="{x:Type Image}">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect ShadowDepth="2" Color="Black" Opacity="0.2" BlurRadius="7"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>
+            <Slider x:Name="slVolume" VerticalAlignment="Center" IsEnabled="True" Margin="10" Grid.Column="1" Width="200" ValueChanged="slVolume_ValueChanged"/>
+        </Grid>
+        <Rectangle Grid.Column="0" Fill="Transparent" Stroke="Black" StrokeThickness="1" Grid.RowSpan="2" Panel.ZIndex="-1"/>
+        <Rectangle Grid.Column="1" Grid.Row="1" Fill="Transparent" Stroke="Black" StrokeThickness="1"/>
+        <Label x:Name="lblConnection" Grid.Column="1" Grid.Row="1" Content="Отключено" VerticalAlignment="Center"/>
+    </Grid>
+</Window>
+    

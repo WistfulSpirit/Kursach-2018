@@ -1,0 +1,4 @@
+http://ott-cdn.ucom.am/s21/index.m3u8 - Россия 24,не работает звук в metaVlc(но работает звук в vlc.dotnet.wpf)
+http://37.145.189.43:34040/udp/233.33.210.27:5050 - Discovery, лагает
+http://ott-cdn.ucom.am/s50/index.m3u8 - Пятница
+http://ott-cdn.ucom.am/s85/index.m3u8 - РЕН-ТВ
