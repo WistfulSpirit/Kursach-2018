@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:LastBoundary"
-        Title="SettingsWindow" Height="300" Width="300">
+        Title="SettingsWindow" Height="300" Width="300" ResizeMode="NoResize" Closing="Window_Closing">
     <Window.Resources>
         <Style TargetType="Slider">
             <Setter Property="Height" Value="100"/>
@@ -33,7 +33,8 @@
                         <Label Grid.Row="0" Content="Список каналов" Margin="5" Padding="0" VerticalAlignment="Center"/>
                         <ListBox x:Name="lbChannels"  Grid.Row="1" Height="auto" Margin="5"/>
                     </Grid>
-                    <Button x:Name="btnStartSearch" Grid.Row="1" HorizontalAlignment="Left" Margin="5" Content="Начать новый поиск" Click="btnStartSearch_Click"/>
+                    <Button x:Name="btnStartSearch" Grid.Row="1" HorizontalAlignment="Left" Margin="5" Content="Начать новый поиск" Padding="5" Click="btnStartSearch_Click"/>
+                    <Button x:Name="btnGetLogs" Grid.Row="3" Content="Записать логи в файл" HorizontalAlignment="Left" Margin="5" Padding="5" Click="btnGetLogs_Click"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Изображение">

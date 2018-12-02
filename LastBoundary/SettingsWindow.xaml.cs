@@ -75,5 +75,17 @@ namespace LastBoundary
             }
 
         }
+
+        private void btnGetLogs_Click(object sender, RoutedEventArgs e)
+        {
+            string FileName = "ActionLog.log";
+            TVControl.SaveLogToFile(FileName);
+            MessageBox.Show("Записано в файл " + FileName);
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Owner.Focus();
+        }
     }
 }

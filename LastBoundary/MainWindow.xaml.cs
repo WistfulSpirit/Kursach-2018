@@ -113,11 +113,13 @@ namespace LastBoundary
             }
             TVControl.PreviousChannel = TVControl.CurrentChannel;
             TVControl.CurrentChannel = TVControl.ChannelList[Num - 1];
+            TVControl.Log(Action.ChannelChange, null);
             lblConnection.Content = "Идет подключение";
             Task.Run(() =>
             {
                 sourceProvider.MediaPlayer.Stop();
                 sourceProvider.MediaPlayer.Play(TVControl.CurrentChannel.Link, options);
+                sourceProvider.MediaPlayer.Audio.IsMute = TVControl.IsMute;
                 lblToChannel.Dispatcher.Invoke(() => lblToChannel.Visibility = Visibility.Hidden);
                 lblConnection.Dispatcher.Invoke(() => lblConnection.Content = "Подключено");
             });
@@ -233,6 +235,7 @@ namespace LastBoundary
             TVControl.IsMute = !sourceProvider.MediaPlayer.Audio.IsMute;
             sourceProvider.MediaPlayer.Audio.IsMute = TVControl.IsMute;
             imgSoundToolBar.Source = new BitmapImage(new Uri((TVControl.IsMute ? "/img/mute.png" : "/img/sound.png"), UriKind.Relative));
+            TVControl.Log(Action.Mute, "Mute = " + TVControl.IsMute);
         }
 
         private void btnVolumeUp_Click(object sender, RoutedEventArgs e)
@@ -260,6 +263,7 @@ namespace LastBoundary
                     next = 1;
                 else
                     next = TVControl.CurrentChannel.Number + 1;
+                TVControl.Log(Action.ChannelUp, String.Format($"From channel {TVControl.CurrentChannel.Number} to {next}"));
                 ChangeChannel(next);
             }
         }
@@ -289,6 +293,7 @@ namespace LastBoundary
                     next = TVControl.ChannelList.Count();
                 else
                     next = TVControl.CurrentChannel.Number - 1;
+                TVControl.Log(Action.ChannelDown, String.Format($"From channel {TVControl.CurrentChannel.Number} to {next}"));
                 ChangeChannel(next);
             }
         }

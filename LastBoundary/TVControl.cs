@@ -5,6 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+enum Action
+{
+    Mute = 1,
+    ChannelUp,
+    ChannelDown,
+    VolumeUp,
+    VolumeDown,
+    ChannelChange
+}
+
 namespace LastBoundary
 {
     internal class TVControl
@@ -41,6 +51,26 @@ namespace LastBoundary
 
 
         /// <summary>
+        /// Log an action to DB
+        /// </summary>
+        /// <param name="action">Action type</param>
+        /// <param name="description">description, null if not necessary</param>
+        public static void Log(Action action, string description)
+        {
+            DBInteraction.InsertLog(action, description);
+        }
+
+        public static void SaveLogToFile(string FileName)
+        {
+            StreamWriter sw = new StreamWriter(FileName,true);
+            foreach (var row in DBInteraction.GetLogs())
+            {
+                sw.WriteLineAsync(row.ToString());
+            }
+            sw.Close();
+        }
+
+        /// <summary>
         /// Get ChannelList contained in file
         /// </summary>
         /// <param name="FilePath">Path to File with channels</param>
@@ -62,6 +92,7 @@ namespace LastBoundary
                 }
             }
             DBInteraction.UpdateChannelsTable(channelList);
+            sr.Close(); 
             return channelList;
         }
 

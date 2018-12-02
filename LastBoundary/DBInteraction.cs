@@ -62,6 +62,60 @@ namespace LastBoundary
             connection.Close();
         }
 
+        /// <summary>
+        /// Insert action log into DB
+        /// </summary>
+        /// <param name="action">Action type</param>
+        /// <param name="description">description, null if not necessary</param>
+        public static void InsertLog(Action action, string description)
+        {
+            //Check for connection to exist or being open
+            if (connection == null)
+                GetDBConnection();
+            if (connection.State == ConnectionState.Open)
+                connection.Close();
+            connection.Open();
+
+            var cmd = new StringBuilder($"INSERT INTO Logs(actionId, description) VALUES ({(int)action}, '{description ?? ""}')");//Command to insert list into table
+            var query = new SqlCommand(cmd.ToString());
+            query.Connection = connection;
+            query.ExecuteNonQuery();
+            connection.Close();
+        }
+
+        /// <summary>
+        /// Return all Logs ordered by time
+        /// </summary>
+        public static List<string> GetLogs()
+        {
+            var list = new List<string>();
+            if (connection == null)
+                GetDBConnection();
+            if (connection.State == ConnectionState.Open)
+                connection.Close();
+            connection.Close();
+
+            var query = new SqlCommand("SELECT Logs.Id, Action.Name, Logs.description, Logs.Time FROM Logs INNER JOIN Action ON Logs.actionId = Action.Id ORDER BY time");
+
+            connection.Open();
+            query.Connection = connection;
+            var reader = query.ExecuteReader();
+            string str = "";
+            while (reader.Read())
+            {
+                str = String.Format(
+                    $"{reader.GetInt32(0)}, " +
+                    $"{reader.GetString(1)}, " +
+                    $"{reader.GetString(2)}, " +
+                    $"{reader.GetDateTime(3)}"
+                    );
+                list.Add(str);
+            }
+
+            connection.Close();
+            return list;
+        }
+
 
         /// <summary>
         /// Get rows from a table
@@ -84,11 +138,10 @@ namespace LastBoundary
 
             while (reader.Read())
             {
-                string num = reader.GetInt32(0).ToString();
+                int num = reader.GetInt32(0);
                 string name = reader.GetString(1);
                 string link = reader.GetString(2);
-                rowList.Add(new Channel(Convert.ToInt32(num), name, link));
-                //rowList.Add(new List<string>().Add(s1.ToString());
+                rowList.Add(new Channel(num, name, link));
             }
 
             connection.Close();
