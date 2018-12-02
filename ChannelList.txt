@@ -3,3 +3,4 @@
 РЕН-ТВ * http://ott-cdn.ucom.am/s85/index.m3u8
 МУЗЫКА HD * http://176.126.166.43:1935/live/312musik/playlist.m3u8
 Настоящее время * http://rfe-lh.akamaihd.net/i/rfe_tvmc5@383630/master.m3u8
+Еда Премиум HD * http://now2.eaglecdn.com/stream/tveda_12/index.m3u8

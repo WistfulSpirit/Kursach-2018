@@ -184,12 +184,12 @@
         </Grid>
         <Grid Grid.Column="0" Grid.Row="1" Panel.ZIndex="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="45"/>
                 <ColumnDefinition Width="1.5*"/>
                 <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Image x:Name="imgSoundToolBar" Source="/img/sound.png" Width="40" Grid.Column="0" PreviewMouseLeftButtonDown="imgSoundToolBar_PreviewMouseLeftButtonDown">
+            <Image x:Name="imgSoundToolBar" Source="/img/sound.png" Width="30" Grid.Column="0" HorizontalAlignment="Center" PreviewMouseLeftButtonDown="imgSoundToolBar_PreviewMouseLeftButtonDown">
                 <Image.Style>
                     <Style TargetType="{x:Type Image}">
                         <Style.Triggers>
@@ -204,7 +204,7 @@
                     </Style>
                 </Image.Style>
             </Image>
-            <Slider x:Name="slVolume" VerticalAlignment="Center" IsEnabled="True" Margin="10" Grid.Column="1" Width="150" ValueChanged="slVolume_ValueChanged"/>
+            <Slider x:Name="slVolume" VerticalAlignment="Center" IsEnabled="True" Grid.Column="1" Width="150" ValueChanged="slVolume_ValueChanged" HorizontalAlignment="Left"/>
         </Grid>
         <Rectangle Grid.Column="0" Fill="Transparent" Stroke="Black" StrokeThickness="1" Grid.RowSpan="2" Panel.ZIndex="-1"/>
         <Rectangle Grid.Column="1" Grid.Row="1" Fill="Transparent" Stroke="Black" StrokeThickness="1"/>
