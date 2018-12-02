@@ -192,6 +192,8 @@
     <Resource Include="img\settings.png" />
     <Resource Include="img\sound.png" />
     <Resource Include="img\switch.png" />
+    <Resource Include="img\nextTB.png" />
+    <Resource Include="img\settingsW.png" />
     <Content Include="tvDB.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
