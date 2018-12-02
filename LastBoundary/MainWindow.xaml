@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vlc="clr-namespace:Vlc.DotNet.Wpf;assembly=Vlc.DotNet.Wpf"
         Title="MainWindow" Height="700" Width="1080"
+        MinHeight="605" MinWidth="1000"
         Closing="Window_Closing">
 
     <Window.Resources>
@@ -91,6 +92,7 @@
                     </VisualBrush.Visual>
                 </VisualBrush>
             </Grid.Background>
+            <Rectangle x:Name="toHide" Grid.Column="0" Grid.Row="0" Fill="DarkGray"/>
             <Image x:Name="Video" Stretch="Uniform"/>
             <Label x:Name="lblToChannel" Content="1488" Margin="40" Panel.ZIndex="10" Visibility="Hidden" 
                      Background="Transparent" Foreground="SpringGreen" FontSize="45" FontWeight="Bold" FontFamily="Agency FB"/>
@@ -104,16 +106,16 @@
         <Grid Grid.Column="1" Grid.Row="0">
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.5*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="0.2*"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -167,7 +169,7 @@
                 <Image Source="/img/chup.png" Width ="25"/>
             </Button>
 
-            <Image Grid.Row="8" Grid.Column="0" Source="/img/sound.png" Width="30"/>
+            <Image Grid.Row="8" Grid.Column="0" Source="/img/sound.png" Width="30" PreviewMouseRightButtonDown="Image_PreviewMouseRightButtonDown"/>
             <Button x:Name="btnVolumeDown" Grid.Row="9" Grid.Column="0" Style="{DynamicResource RoundCorner}" Width="35" Height="28" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="ExtraBold" Click="btnVolumeDown_Click">
                 <Image Source="img/minus.png" Width ="20"/>
             </Button>
@@ -202,7 +204,7 @@
                     </Style>
                 </Image.Style>
             </Image>
-            <Slider x:Name="slVolume" VerticalAlignment="Center" IsEnabled="True" Margin="10" Grid.Column="1" Width="200" ValueChanged="slVolume_ValueChanged"/>
+            <Slider x:Name="slVolume" VerticalAlignment="Center" IsEnabled="True" Margin="10" Grid.Column="1" Width="150" ValueChanged="slVolume_ValueChanged"/>
         </Grid>
         <Rectangle Grid.Column="0" Fill="Transparent" Stroke="Black" StrokeThickness="1" Grid.RowSpan="2" Panel.ZIndex="-1"/>
         <Rectangle Grid.Column="1" Grid.Row="1" Fill="Transparent" Stroke="Black" StrokeThickness="1"/>

@@ -146,6 +146,7 @@ namespace LastBoundary
         {
             if (!TVControl.IsOn)
             {
+                toHide.Fill = new SolidColorBrush(Colors.Transparent);
                 TVControl.IsOn = true;
                 lblConnection.Content = "Идет подключение";
                 Task.Run(() =>
@@ -157,6 +158,7 @@ namespace LastBoundary
             else
             {
                 Task.Run(() => sourceProvider.MediaPlayer.Stop());
+                toHide.Fill = new SolidColorBrush(Colors.DarkGray);
                 TVControl.IsOn = false;
                 lblConnection.Content = "Отключено";
             }
@@ -220,54 +222,80 @@ namespace LastBoundary
 
         private void slVolume_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            TVControl.IsMute = sourceProvider.MediaPlayer.Audio.IsMute = false;
+            TVControl.IsMute = false;
+            sourceProvider.MediaPlayer.Audio.IsMute = TVControl.IsMute;
             imgSoundToolBar.Source = new BitmapImage(new Uri("/img/sound.png", UriKind.Relative));
             sourceProvider.MediaPlayer.Audio.Volume = (int)slVolume.Value;
         }
 
         private void imgSoundToolBar_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            TVControl.IsMute = sourceProvider.MediaPlayer.Audio.IsMute;
-            sourceProvider.MediaPlayer.Audio.IsMute = !TVControl.IsMute;
-            imgSoundToolBar.Source = new BitmapImage(new Uri((!TVControl.IsMute ? "/img/mute.png" : "/img/sound.png"), UriKind.Relative));
+            TVControl.IsMute = !sourceProvider.MediaPlayer.Audio.IsMute;
+            sourceProvider.MediaPlayer.Audio.IsMute = TVControl.IsMute;
+            imgSoundToolBar.Source = new BitmapImage(new Uri((TVControl.IsMute ? "/img/mute.png" : "/img/sound.png"), UriKind.Relative));
         }
 
         private void btnVolumeUp_Click(object sender, RoutedEventArgs e)
         {
-            if (sourceProvider.MediaPlayer.Audio.Volume <= TVControl.MaxVolume - VOLUME_STEP)
+            if (TVControl.IsOn)
             {
-                sourceProvider.MediaPlayer.Audio.Volume += VOLUME_STEP;
-                slVolume.Value = sourceProvider.MediaPlayer.Audio.Volume;
+                int volume = sourceProvider.MediaPlayer.Audio.Volume;
+                if (volume < TVControl.MaxVolume)
+                {
+                    volume += VOLUME_STEP;
+                    if (volume > TVControl.MaxVolume)
+                        volume = TVControl.MaxVolume;
+                    sourceProvider.MediaPlayer.Audio.Volume = volume;
+                    slVolume.Value = volume;
+                }
             }
         }
 
         private void btnChannelUp_Click(object sender, RoutedEventArgs e)
         {
-            int next;
-            if (TVControl.CurrentChannel.Number + 1 >= TVControl.ChannelList.Count)
-                next = 1;
-            else
-                next = TVControl.CurrentChannel.Number + 1;
-            ChangeChannel(next);
+            if (TVControl.IsOn)
+            {
+                int next;
+                if (TVControl.CurrentChannel.Number + 1 > TVControl.ChannelList.Count)
+                    next = 1;
+                else
+                    next = TVControl.CurrentChannel.Number + 1;
+                ChangeChannel(next);
+            }
         }
 
         private void btnVolumeDown_Click(object sender, RoutedEventArgs e)
         {
-            if (sourceProvider.MediaPlayer.Audio.Volume > TVControl.MinVolume + VOLUME_STEP)
+            if (TVControl.IsOn)
             {
-                sourceProvider.MediaPlayer.Audio.Volume -= VOLUME_STEP;
-                slVolume.Value = sourceProvider.MediaPlayer.Audio.Volume;
+                int volume = sourceProvider.MediaPlayer.Audio.Volume;
+                if (volume > TVControl.MinVolume)
+                {
+                    volume -= VOLUME_STEP;
+                    if (volume < TVControl.MinVolume)
+                        volume = 0;
+                    sourceProvider.MediaPlayer.Audio.Volume = volume;
+                    slVolume.Value = volume;
+                }
             }
         }
 
         private void btnChannelDown_Click(object sender, RoutedEventArgs e)
         {
-            int next;
-            if (TVControl.CurrentChannel.Number + 1 <= 0)
-                next = TVControl.ChannelList.Count();
-            else
-                next = TVControl.CurrentChannel.Number - 1;
-            ChangeChannel(next);
+            if (TVControl.IsOn)
+            {
+                int next;
+                if (TVControl.CurrentChannel.Number - 1 <= 1)
+                    next = TVControl.ChannelList.Count();
+                else
+                    next = TVControl.CurrentChannel.Number - 1;
+                ChangeChannel(next);
+            }
+        }
+
+        private void Image_PreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            sourceProvider.MediaPlayer.Audio.Volume = 800;
         }
     }
 }
